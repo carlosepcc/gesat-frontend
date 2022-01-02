@@ -5,10 +5,10 @@
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
 
         <q-toolbar-title>
-          <q-avatar>
-            <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg" />
-          </q-avatar>
-          GESAT
+            <q-avatar>
+              <img src="~assets/logo.svg" />
+            </q-avatar>
+            GESAT
         </q-toolbar-title>
       </q-toolbar>
     </q-header>
@@ -24,43 +24,9 @@
       :breakpoint="500"
       bordered
       side="left"
-      class="bg-grey-3"
     >
       <q-scroll-area class="fit">
-        <q-list
-          ><!-- <q-item clickable v-ripple>
-            <q-item-section avatar>
-              <q-icon name="inbox" />
-            </q-item-section>
-            <q-item-section> Dictámenes técnicos </q-item-section>
-          </q-item>
-
-          <q-item active clickable v-ripple>
-            <q-item-section avatar>
-              <q-icon name="edit" />
-            </q-item-section>
-
-            <q-item-section> Minutas de reunión </q-item-section>
-          </q-item>
-
-          <q-item clickable v-ripple>
-            <q-item-section avatar>
-              <q-icon name="edit" />
-            </q-item-section>
-
-            <q-item-section> Reportes de notificación </q-item-section>
-          </q-item>
-
-          <q-separator />
-
-          <q-item clickable v-ripple>
-            <q-item-section avatar>
-              <q-icon name="help" />
-            </q-item-section>
-
-            <q-item-section> Ayuda </q-item-section>
-          </q-item> -->
-
+        <q-list>
           <DrawerItem
             v-for="drawerItem in drawerItems"
             :key="drawerItem.title"
@@ -77,65 +43,59 @@
   </q-layout>
 </template>
 
-<script>
+<script setup>
 import { ref } from 'vue';
 import DrawerItem from 'components/DrawerItem';
 
-export default {
-  setup() {
-    const leftDrawerOpen = ref(false);
-    const drawerItems = [
-      {
-        title: 'Docs',
-        caption: 'quasar.dev',
-        icon: 'school',
-        link: 'https://quasar.dev',
-      },
-      {
-        title: 'Github',
-        caption: 'github.com/quasarframework',
-        icon: 'code',
-        link: 'https://github.com/quasarframework',
-      },
-      {
-        title: 'Discord Chat Channel',
-        caption: 'chat.quasar.dev',
-        icon: 'chat',
-        link: 'https://chat.quasar.dev',
-      },
-      {
-        title: 'Forum',
-        caption: 'forum.quasar.dev',
-        icon: 'record_voice_over',
-        link: 'https://forum.quasar.dev',
-      },
-      {
-        title: 'Twitter',
-        caption: '@quasarframework',
-        icon: 'rss_feed',
-        link: 'https://twitter.quasar.dev',
-      },
-      {
-        title: 'Facebook',
-        caption: '@QuasarFramework',
-        icon: 'public',
-        link: 'https://facebook.quasar.dev',
-      },
-      {
-        title: 'Quasar Awesome',
-        caption: 'Community Quasar projects',
-        icon: 'favorite',
-        link: 'https://awesome.quasar.dev',
-      },
-    ];
-    return {
-      drawerItems,
-      miniState: ref(true),
-      leftDrawerOpen,
-      toggleLeftDrawer() {
-        leftDrawerOpen.value = !leftDrawerOpen.value;
-      },
-    };
+// calling here; equivalent to when component is created
+
+const leftDrawerOpen = ref(false);
+const miniState = ref(true);
+function toggleLeftDrawer() {
+  leftDrawerOpen.value = !leftDrawerOpen.value;
+}
+
+const drawerItems = [
+  {
+    title: 'Dictámenes Técnicos',
+    icon:'D',
+    to: 'dictamenes',
   },
-};
+  {
+    title: 'Artefactos',
+    icon: 'A',
+    to: 'artefactos',
+  },
+  {
+    title: 'Hallazgos',
+    icon: 'H',
+    to: 'hallazgos',
+  },
+  {
+    title: 'Minutas de reunión',
+    icon: 'M',
+    to: 'minutas',
+  },
+  {
+    title: 'Reportes de notificación',
+    icon: 'N',
+    to: 'rnotificacion',
+  },
+  {
+    title: 'Reportes Técnicos',
+    icon: 'T',
+    to: 'rtecnicos',
+  },
+  {
+    separate: true,
+    title: 'Acerca de',
+    icon: 'info',
+    to: 'about',
+  },
+  {
+    title: 'Ayuda',
+    icon: 'help',
+    to: 'help',
+  },
+];
 </script>
