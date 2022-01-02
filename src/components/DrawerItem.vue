@@ -1,8 +1,8 @@
 <template>
-  <q-item clickable v-ripple>
-
-    <q-item-section avatar>
-      <q-icon :name="icon" />
+  <q-separator v-if="separate" class="q-mt-lg"/>
+  <q-item clickable v-ripple :to="to">
+    <q-item-section avatar style="font-family: sans-serif">
+      <q-icon :name="icon ? icon : picon" />
     </q-item-section>
 
     <q-item-section>
@@ -11,17 +11,11 @@
         {{ caption }}
       </q-item-label>
     </q-item-section>
-    
   </q-item>
 </template>
-
-<script lang="ts">
-import { defineComponent } from 'vue';
-
-export default defineComponent({
-  name: 'DrawerItem',
-  props: {
-    title: {
+<script setup>
+const props = defineProps({
+  title: {
       type: String,
       required: true,
     },
@@ -31,15 +25,20 @@ export default defineComponent({
       default: '',
     },
 
-    link: {
+    to: {
       type: String,
-      default: '#',
+      default: '',
     },
 
     icon: {
       type: String,
-      default: 'circle',
+      default: '',
     },
-  },
-});
+    separate: {
+      type: Boolean,
+      default: false,
+    },
+})
+
+
 </script>
