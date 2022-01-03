@@ -101,7 +101,9 @@ module.exports = configure(function (ctx) {
           positive: '#21BA45',
           negative: '#C10015',
           info: '#943a8b',
-          warning: '#f2bd29'
+          warning: '#f2bd29',
+
+          xedro: '#c64ab9'
         }
       },
 
