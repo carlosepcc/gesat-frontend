@@ -6,34 +6,19 @@
           <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
 
           <q-toolbar-title>
-            <!-- <q-avatar>
-              <img src="~assets/logo.svg" />
-            </q-avatar> -->
-            <!-- <span class="column">
-              <span class="brand text-primary">XEDRO</span>
-              <span class="row inline items-center">
-                <span class="siglas text-indigo-10">GESAT</span>
-                <span class="stands text-indigo-4 q-pl-sm q-pr-xl">
-                  Gestión de Actividades<br />
-                  Técnicas
-                </span>
-              </span>
-            </span> -->
-
-              <div class="row">
-<span class="brandi i-xedro on-left gt-xs"></span>
-            <div class="column">
-              <div class="brand text-info">XEDRO</div>
-              <div class="row-inline items-center">
-                <span class="text-indigo-10 text-bold siglas">GESAT</span>
-                <span class="stands gt-xs" styl="color:#726584">
-                  Gestión de Actividades<br />
-                  Técnicas
-                </span>
+            <div class="row">
+              <span class="brandi i-xedro on-left gt-xs"></span>
+              <div class="column">
+                <div class="brand text-info">XEDRO</div>
+                <div class="row-inline items-center">
+                  <span class="text-indigo-10 text-bold siglas">GESAT</span>
+                  <span class="stands gt-xs" styl="color:#726584">
+                    Gestión de Actividades<br />
+                    Técnicas
+                  </span>
+                </div>
               </div>
             </div>
-
-              </div>
           </q-toolbar-title>
         </div>
       </q-toolbar>
@@ -68,6 +53,7 @@
     </q-page-container>
   </q-layout>
 </template>
+
 <script setup>
 import { ref } from 'vue';
 import DrawerItem from 'components/DrawerItem';
@@ -124,6 +110,7 @@ const drawerItems = [
   },
 ];
 </script>
+
 <style scoped>
 .brand-bar {
   margin-bottom: 2px;
@@ -162,10 +149,10 @@ const drawerItems = [
   width: 51px;
   /* padding-right: 51px; */
 }
- .i-xedro {
-      background: url(https://www.uci.cu/sites/all/themes/uci/images/sprite.png)
-        no-repeat 0-1769px;
-    }
+.i-xedro {
+  background: url(https://www.uci.cu/sites/all/themes/uci/images/sprite.png)
+    no-repeat 0-1769px;
+}
 .siglas {
   font-weight: 1000;
   font-size: 20pt;

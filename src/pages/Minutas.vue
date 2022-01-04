@@ -1,6 +1,6 @@
 <template>
   <q-page padding>
-    <!-- content -->
+    Minutas de reunión
   </q-page>
 </template>
 

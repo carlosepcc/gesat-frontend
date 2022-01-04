@@ -1,6 +1,6 @@
 <template>
   <q-page padding>
-    <!-- content -->
+    Reportes técnicos
   </q-page>
 </template>
 

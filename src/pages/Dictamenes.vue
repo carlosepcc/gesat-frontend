@@ -1,6 +1,6 @@
 <template>
   <q-page padding>
-    <!-- content -->
+    Dictámenes
   </q-page>
 </template>
 
