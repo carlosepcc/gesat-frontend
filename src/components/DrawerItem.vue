@@ -4,7 +4,6 @@
     <q-item-section avatar style="font-family: sans-serif">
       <q-icon :name="icon ? icon : picon" />
     </q-item-section>
-
     <q-item-section>
       {{ title }}
       <q-item-label caption>
@@ -19,17 +18,14 @@ const props = defineProps({
       type: String,
       required: true,
     },
-
     caption: {
       type: String,
       default: '',
     },
-
     to: {
       type: String,
       default: '',
     },
-
     icon: {
       type: String,
       default: '',
@@ -39,6 +35,4 @@ const props = defineProps({
       default: false,
     },
 })
-
-
 </script>

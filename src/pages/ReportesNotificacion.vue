@@ -1,6 +1,6 @@
 <template>
   <q-page padding>
-    <!-- content -->
+    Reportes de notificación
   </q-page>
 </template>
 

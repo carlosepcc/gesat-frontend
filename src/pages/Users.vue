@@ -1,6 +1,6 @@
 <template>
   <q-page padding>
-    <!-- content -->
+    Usuarios
   </q-page>
 </template>
 
