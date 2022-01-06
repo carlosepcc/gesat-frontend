@@ -98,6 +98,11 @@ const drawerItems = [
     to: 'rtecnicos',
   },
   {
+    title: 'Usuarios',
+    icon: 'U',
+    to: 'users',
+  },
+  {
     separate: true,
     title: 'Acerca de',
     icon: 'info',
