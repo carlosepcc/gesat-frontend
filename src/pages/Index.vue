@@ -4,10 +4,10 @@
       <q-icon
         :name="
           Math.random() > 0.5
-            ? 'sentiment_dissatisfied'
+            ? 'sentiment_dissatisfied_rounded'
             : Math.random() > 0.5
-            ? 'notifications_none'
-            : 'sentiment_very_dissatisfied'
+            ? 'support_agent_rounded'
+            : 'sentiment_very_dissatisfied_rounded'
         "
         size="xl"
       ></q-icon>
