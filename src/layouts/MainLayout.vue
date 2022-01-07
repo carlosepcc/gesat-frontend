@@ -117,6 +117,14 @@ const drawerItems = [
 </script>
 
 <style scoped>
+@font-face {
+  font-family: "Electrofied";
+  src: url("https://db.onlinewebfonts.com/t/f45d0d0e10eb5171b1ad9ee95d1314f9.ttf") format("truetype")
+  }
+  @font-face {
+    font-family: "Aller";
+    src: url("https://db.onlinewebfonts.com/t/3bf7501ddcf8338bc9cdcedad10914cb.ttf") format("truetype")
+  }
 .brand-bar {
   margin-bottom: 2px;
   width: 100%;
@@ -159,19 +167,32 @@ const drawerItems = [
     no-repeat 0-1769px;
 }
 .siglas {
+  font-family: Electrofied, sans-serif;
   font-weight: 1000;
   font-size: 20pt;
   color: var(--downcolor);
-  background: linear-gradient(#323a8b 50%, #11134b 50%);
+  background: rgb(
+    37,
+    33,
+    89
+  ); /*! VALORES DE COLOR TOMADOS DEL MANUAL DE NORMAS GRÁFICAS DE XEDRO. NO MODIFICAR*/
+  background: linear-gradient(
+    180deg,
+    rgba(37, 33, 89, 1) 0%,
+    rgba(51, 59, 146, 1) 50%,
+    rgba(21, 13, 66, 1) 50%,
+    rgba(53, 62, 115, 1) 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-.stands {
+.stands,.generico {
+  font-family:Aller,sans-serif;
   display: inline-block;
   max-width: 200px;
   height: 100%;
   color: #726584;
-  margin-left: 3px;
+  margin-left: 3.4px;
   font-size: 8pt;
   line-height: 8pt;
 }
@@ -180,7 +201,7 @@ const drawerItems = [
   text-transform: uppercase;
   display: block;
   margin-bottom: -12px;
-  margin-left: 4px;
+  margin-left: 2px;
   font-size: 8pt;
   font-weight: 700;
   letter-spacing: 0;
