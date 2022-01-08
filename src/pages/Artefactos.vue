@@ -74,10 +74,10 @@
       :grid="isTableGrid"
       :fullscreen="isTableFullscreen"
       rows-per-page-label="Filas por página"
-      icon-next-page="help"
       :filter="filter"
-      flat
-      bordered
+      :flat="!isTableGrid"
+      class="my-sticky-header-column-table"
+      separator="vertical"
     />
 
     </q-page>
@@ -167,3 +167,44 @@ const rows = [
   },
 ];
 </script>
+
+<style lang="sass">
+.my-sticky-header-column-table
+  /* height or max-height is important */
+  height: 310px
+
+  /* specifying max-width so the example can
+    highlight the sticky column on any browser window */
+  max-width: 600px
+
+  td:first-child
+    /* bg color is important for td; just specify one */
+    background-color: #eee !important
+
+  tr th
+    position: sticky
+    /* higher than z-index for td below */
+    z-index: 2
+    /* bg color is important; just specify one */
+    background: #eee
+
+  /* this will be the loading indicator */
+  thead tr:last-child th
+    /* height of all previous header rows */
+    top: 48px
+    /* highest z-index */
+    z-index: 3
+  thead tr:first-child th
+    top: 0
+    z-index: 1
+  tr:first-child th:first-child
+    /* highest z-index */
+    z-index: 3
+
+  td:first-child
+    z-index: 1
+
+  td:first-child, th:first-child
+    position: sticky
+    left: 0
+</style>
