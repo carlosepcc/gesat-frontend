@@ -9,10 +9,10 @@
             <div class="row">
               <span class="brandi i-xedro on-left gt-xs"></span>
               <div class="column">
-                <div class="brand text-info">XEDRO</div>
+                <div class="brand text-xedro">XEDRO</div>
                 <div class="row-inline items-center">
                   <span class="text-indigo-10 text-bold siglas">GESAT</span>
-                  <span class="stands gt-xs" styl="color:#726584">
+                  <span class="stands gt-sm generico stands">
                     Gestión de Actividades<br />
                     Técnicas
                   </span>
@@ -21,10 +21,28 @@
             </div>
           </q-toolbar-title>
         </div>
+        <q-item
+          class="text-white q-py-none absolute-right"
+          title="AlanMathinsonTuring"
+        >
+          <q-item-section side>
+            <q-item-label class="text-white gt-xs">{{
+              user.name
+            }}</q-item-label>
+            <q-item-label class="text-white" caption>{{
+              user.rol
+            }}</q-item-label>
+          </q-item-section>
+          <q-item-section>
+            <q-avatar size="48px">
+              <img :src="user.img" />
+            </q-avatar>
+          </q-item-section>
+        </q-item>
       </q-toolbar>
     </q-header>
 
-    <!--MENU LATERAL ESTILO DRAWER ("gaveta" en espanol) -->
+    <!--MENU LATERAL (DRAWER "gaveta") -->
     <q-drawer
       v-model="leftDrawerOpen"
       show-if-above
@@ -57,11 +75,16 @@
 <script setup>
 import { ref } from 'vue';
 import DrawerItem from 'components/DrawerItem';
-
 // calling here; equivalent to when component is created
 
+const user = ref({
+  name: 'Alan Mathison Turing',
+  rol: 'Administrador',
+  img: 'https://www.ecured.cu/images/c/c6/Alan_Turing_II.jpg',
+});
+
 const leftDrawerOpen = ref(false);
-const miniState = ref(true);
+const miniState = ref(false);
 function toggleLeftDrawer() {
   leftDrawerOpen.value = !leftDrawerOpen.value;
 }
@@ -118,13 +141,15 @@ const drawerItems = [
 
 <style scoped>
 @font-face {
-  font-family: "Electrofied";
-  src: url("https://db.onlinewebfonts.com/t/f45d0d0e10eb5171b1ad9ee95d1314f9.ttf") format("truetype")
-  }
-  @font-face {
-    font-family: "Aller";
-    src: url("https://db.onlinewebfonts.com/t/3bf7501ddcf8338bc9cdcedad10914cb.ttf") format("truetype")
-  }
+  font-family: 'Electrofied';
+  src: url('https://db.onlinewebfonts.com/t/f45d0d0e10eb5171b1ad9ee95d1314f9.ttf')
+    format('truetype');
+}
+@font-face {
+  font-family: 'Aller';
+  src: url('https://db.onlinewebfonts.com/t/3bf7501ddcf8338bc9cdcedad10914cb.ttf')
+    format('truetype');
+}
 .brand-bar {
   margin-bottom: 2px;
   width: 100%;
@@ -186,8 +211,9 @@ const drawerItems = [
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-.stands,.generico {
-  font-family:Aller,sans-serif;
+.stands,
+.generico {
+  font-family: sans-serif; /*font face Aller has an issue with the "s" lowercase character that makes it look uppercase*/
   display: inline-block;
   max-width: 200px;
   height: 100%;
