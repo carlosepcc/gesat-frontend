@@ -1,8 +1,9 @@
 <template>
   <q-separator v-if="separate" class="q-mt-lg"/>
   <q-item clickable v-ripple :to="to">
-    <q-item-section avatar style="font-family: sans-serif">
-      <q-icon :name="icon ? icon : picon" />
+    <q-item-section avatar>
+      <q-icon v-if="icon" :name="icon ? icon : picon"  />
+    <span v-else>{{ alt }}</span>
     </q-item-section>
     <q-item-section>
       {{ title }}
@@ -30,9 +31,16 @@ const props = defineProps({
       type: String,
       default: '',
     },
+    alt:{
+      type: String,
+      default: '',
+    },
     separate: {
       type: Boolean,
       default: false,
     },
+    color:{
+      type: String,
+    }
 })
 </script>

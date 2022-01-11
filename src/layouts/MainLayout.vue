@@ -91,9 +91,16 @@ function toggleLeftDrawer() {
 
 const drawerItems = [
   {
+title: "Inicio",
+icon:"home",
+alt:"n",
+to: "/"
+  },
+  {
     title: 'Dictámenes Técnicos',
-    icon: 'D',
+    icon:'D',
     to: 'dictamenes',
+    separate: true
   },
   {
     title: 'Artefactos',

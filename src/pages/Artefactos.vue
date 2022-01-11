@@ -1,11 +1,13 @@
 <template>
   <q-page class="q-pt-md">
-    <div class="q-mx-md">
+    <ArtefactoForm/>
+
+    <div class="q-mx-md row items-center">
       <q-btn-toggle
+        title="Modo de presentación (Tabla o Rejilla)"
         v-model="isTableGrid"
         size="sm"
         glossy
-        dense
         push
         toggle-color="primary"
         :options="[
@@ -23,10 +25,10 @@
       </q-btn-toggle>
 
       <q-btn-toggle
+        title="Densidad las filas en vista de tabla (Normal o Denso)"
         v-model="isTableDense"
         size="sm"
         glossy
-        dense
         push
         class="q-mx-sm"
         toggle-color="primary"
@@ -60,10 +62,16 @@
           <q-icon name="r_search" />
         </template>
         <template v-slot:append>
-          <q-icon name="r_close" @click="filter = ''" class="cursor-pointer" />
+          <q-icon
+            v-show="filter"
+            name="r_close"
+            @click="filter = ''"
+            class="cursor-pointer"
+          />
         </template>
       </q-input>
     </div>
+
     <div class="q-pa-0">
       <!--VIRTUAL SCROLL 
         :pagination="{ rowsPerPage: 0 }"
@@ -93,6 +101,8 @@
 import { useQuasar } from 'quasar';
 import { ref } from 'vue';
 const $q = useQuasar();
+
+import ArtefactoForm from 'components/ArtefactoForm';
 
 const filter = ref('');
 
@@ -224,7 +234,7 @@ const rows = [
 
   /* specifying max-width so the example can
     highlight the sticky column on any browser window max-width: 6000px*/
- 
+
   td:first-child
     /* bg color is important for td; just specify one */
     background-color: #eee !important

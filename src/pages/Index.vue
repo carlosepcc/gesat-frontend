@@ -2,16 +2,10 @@
   <q-page class="row items-center justify-evenly">
     <div class="text-grey column items-center">
       <q-icon
-        :name="
-          Math.random() > 0.5
-            ? 'r_sentiment_dissatisfied'
-            : Math.random() > 0.5
-            ? 'r_support_agent'
-            : 'r_sentiment_very_dissatisfied'
-        "
+        name="r_support_agent"
         size="xl"
-      ></q-icon>
-      <p>No hay nuevas notificaciones</p>
+       ></q-icon>
+      <p>En cuanto tengamos nueva información se la mostraremos</p>
     </div>
   </q-page>
 </template>
