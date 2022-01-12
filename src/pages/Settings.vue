@@ -1,6 +1,7 @@
 <template>
   <q-page padding>
-    Usuarios
+    Ajustes
+    TODO: Dense UI
   </q-page>
 </template>
 

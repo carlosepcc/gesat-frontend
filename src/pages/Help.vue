@@ -1,6 +1,6 @@
 <template>
   <q-page padding>
-    Usuarios
+    Ayuda
   </q-page>
 </template>
 
