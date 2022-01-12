@@ -1,8 +1,17 @@
-# GESAT frontend (gesat-frontend)
+# [gesat-frontend](https://github.com/carlosepcc/gesat-frontend)
 
 GESAT App frontend
 
-## Install the dependencies
+### Code 
+- github.com/carlosepcc/gesat-frontend
+  
+### Alpha deployment 
+- gesat.surge.sh
+
+---
+## DEVELOPMENT
+
+### Install the dependencies
 ```bash
 yarn
 ```
