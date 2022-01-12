@@ -1,10 +1,11 @@
 <template>
-  <div
-    class="q-pa-md shadow-2 rounded-borders q-my-md q-mx-auto"
-    style="max-width: 400px"
-  >
-    <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
-      <div v-for="field in fields" v-bind:key="field.name">
+  <q-dialog position="top">
+    <q-card class="">
+      <q-card-section class="text-h7 text-uppercase text-weight-light"> Nuevo Artefacto </q-card-section>
+      <q-separator />
+      <q-card-section>
+        <q-form @submit="onSubmit" @reset="onReset">
+          <!-- <div v-for="field in fields" v-bind:key="field.name">
         <q-input
           filled
           v-model="artefactoName"
@@ -12,78 +13,88 @@
           lazy-rules
           :rules="[(val) => (val && val.length > 0) || 'Please type something']"
         />
-      </div>
+      </div> -->
+          <!-- TODO: Componente generico  -->
 
-      <q-input
-        filled
-        v-model="artefactoName"
-        label="Nombre del artefacto"
-        lazy-rules
-        :rules="[(val) => (val && val.length > 0) || 'Por favor, escriba algo']"
-      />
+          <q-input
+            filled
+            v-model="artefactoName"
+            label="Nombre del artefacto"
+            lazy-rules
+            :rules="[
+              (val) => (val && val.length > 0) || 'Por favor, escriba algo',
+            ]"
+          />
 
-      <q-input
-        label="Descripción"
-        v-model="description"
-        filled
-        autogrow
-        lazy-rules
-        :rules="[(val) => (val && val.length > 0) || 'Por favor, escriba algo']"
-      />
+          <q-input
+            label="Descripción"
+            v-model="description"
+            filled
+            autogrow
+            lazy-rules
+            :rules="[
+              (val) => (val && val.length > 0) || 'Por favor, escriba algo',
+            ]"
+          />
 
-      <q-select
+          <q-select
+            v-model="fase"
+            default
+            :options="[
+              { label: '1', value: 1 },
+              { label: '2', value: 2 },
+              { label: '3', value: 3 },
+            ]"
+            label="Fase"
+            filled
+            lazy-rules
+            :rules="[val || 'Por favor, seleccione algo']"
+          />
 
-        v-model="fase"
-        default
-        :options="[
-          { label: '1', value: 1 },
-          { label: '2', value: 2 },
-          { label: '2', value: 3 },
-        ]"
-        label="Fase"
-        filled
-        lazy-rules
-        :rules="[val || 'Por favor, seleccione algo']"
-      />
+          <q-select
+            v-model="disciplina"
+            :options="[
+              { label: '1', value: 1 },
+              { label: '2', value: 2 },
+              { label: '3', value: 3 },
+              { label: '4', value: 4 },
+            ]"
+            label="Disciplina"
+            filled
+            lazy-rules
+            :rules="[val || 'Por favor, seleccione algo']"
+          />
+          <q-file
+            filled
+            v-model="attachments"
+            label="Adjuntos"
+            counter
+            use-chips
+            multiple
+            append
+            accept=".doc,.docx,.odt,.xml,.pdf,.xsl,.xslx,ppt,.pptx,.odp,.ods,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+          >
+            <template v-slot:prepend>
+              <q-icon name="attach_file" />
+            </template>
+          </q-file>
 
-      <q-select
-        v-model="disciplina"
-        :options="[
-          { label: '1', value: 1 },
-          { label: '2', value: 2 },
-          { label: '2', value: 3 },
-        ]"
-        label="Disciplina"
-        filled
-        lazy-rules
-        :rules="[val || 'Por favor, seleccione algo']"
-      />
-      <q-file
-        filled
-        v-model="attachments"
-        label="Adjuntos"
-        counter
-        use-chips
-        multiple
-        append
-        accept=".doc,.docx,.odt,.xml,.pdf,.xsl,.xslx,ppt,.pptx,.odp,.ods,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
-        <template v-slot:prepend>
-          <q-icon name="attach_file" />
-        </template>
-      </q-file>
+          <q-separator class="q-mb-sm q-mt-md" />
 
-      <div>
-        <q-btn
-          label="Limpiar campos"
-          type="reset"
-          color="primary"
-          flat
-          class="q-ml-sm"
-        />
-        <q-btn icon="r_add" label="Crear" type="submit" color="primary" />
-      </div>
-    </q-form>
-  </div>
+          <div class="q-gutter-sm">
+            <q-btn
+              label="Limpiar campos"
+              type="reset"
+              color="primary"
+              flat
+              class="q-ml-sm"
+            />
+            <q-btn push icon="r_add" label="Crear" type="submit" color="primary" />
+          </div>
+        </q-form>
+      </q-card-section>
+    </q-card>
+  </q-dialog>
 </template>
 <script setup>
 import { useQuasar } from 'quasar';
@@ -97,7 +108,7 @@ const props = defineProps({
   url: {
     type: String,
     default: '',
-  },
+  } /* 
   fields: {
     artefactoName: {
       name: 'artefactoname',
@@ -105,7 +116,7 @@ const props = defineProps({
       type: 'text',
       label: 'Nombre del artefacto',
     },
-  },
+  }, */,
 });
 
 const nuevoArtefacto = ref(null);
@@ -121,9 +132,13 @@ function onSubmit() {
 }
 
 function onReset() {
-  artefactoName = ref(null);
-  description = ref(null);
-  fase = ref(null);
-  adjuntos = ref(['']);
+artefactoName.value = null;
+description.value = null;
+fase = ref(1);
+disciplina = ref(1);
+attachments = ref(null);
+  
+  
+  
 }
 </script>

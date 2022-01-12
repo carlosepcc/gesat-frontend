@@ -134,14 +134,19 @@ to: "/"
   },
   {
     separate: true,
-    title: 'Acerca de',
-    icon: 'info',
-    to: 'about',
+    title: 'Ajustes',
+    icon: 'settings',
+    to: 'settings',
   },
   {
     title: 'Ayuda',
     icon: 'help',
     to: 'help',
+  },
+  {
+    title: 'Acerca de',
+    icon: 'info',
+    to: 'about',
   },
 ];
 </script>

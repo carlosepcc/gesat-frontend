@@ -1,13 +1,14 @@
 <template>
   <q-page class="q-pt-md">
-    <ArtefactoForm/>
-
-    <div class="q-mx-md row items-center">
+      <ArtefactoForm v-model=showForm />
+<div class="q-mx-md q-mb-xs">
+    <div class=" row items-center">
       <q-btn-toggle
         title="Modo de presentación (Tabla o Rejilla)"
         v-model="isTableGrid"
         size="sm"
-        glossy
+        
+        rounded
         push
         toggle-color="primary"
         :options="[
@@ -28,7 +29,7 @@
         title="Densidad las filas en vista de tabla (Normal o Denso)"
         v-model="isTableDense"
         size="sm"
-        glossy
+        rounded
         push
         class="q-mx-sm"
         toggle-color="primary"
@@ -49,13 +50,16 @@
       <!--! TODO: Permitir entrar y salir de pantalla completa
       <q-toggle disable size="lg" icon="r_fullscreen" v-model="isTableFullscreen" />
       -->
-      <q-input
+      
+
+
+      <q-btn icon="add" push rounded color="primary" label="Nuevo artefacto" @click="showForm = true" />
+    <q-input
         borderless
         bottom-slots
         v-model="filter"
         label="Filtrar"
         placeholder="Escriba para comenzar a filtrar.."
-        counter
         :dense="isTableDense"
       >
         <template v-slot:prepend>
@@ -69,8 +73,8 @@
             class="cursor-pointer"
           />
         </template>
-      </q-input>
-    </div>
+      </q-input></div>
+      </div>
 
     <div class="q-pa-0">
       <!--VIRTUAL SCROLL 
@@ -104,6 +108,7 @@ const $q = useQuasar();
 
 import ArtefactoForm from 'components/ArtefactoForm';
 
+const showForm = ref(false)
 const filter = ref('');
 
 const isTableGrid = ref(false);
