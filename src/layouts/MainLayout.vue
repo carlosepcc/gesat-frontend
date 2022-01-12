@@ -67,10 +67,10 @@
 
     <!-- CONTENEDOR DE PAGINAS -->
     <q-page-container>
-      <router-view v-slot="{ Component }">
+      <router-view v-slot="{ Component, route }">
 <transition>
   <keep-alive>
-    <component :is="Component"/>
+    <component :is="Component" :key="route.name" />
   </keep-alive>
 </transition>
       </router-view>
