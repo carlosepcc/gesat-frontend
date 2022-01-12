@@ -1,80 +1,82 @@
 <template>
   <q-page class="q-pt-md">
-      <ArtefactoForm v-model=showForm />
-<div class="q-mx-md q-mb-xs">
-    <div class=" row items-center">
-      <q-btn-toggle
-        title="Modo de presentación (Tabla o Rejilla)"
-        v-model="isTableGrid"
-        size="sm"
-        
-        rounded
-        push
-        toggle-color="primary"
-        :options="[
-          { value: false, slot: 'tableview' },
-          { value: true, slot: 'gridview' },
-        ]"
-      >
-        <template v-slot:tableview>
-          <q-icon name="r_table_chart" />
-        </template>
+    <ArtefactoForm v-model="showForm" />
+    <div class="q-mx-md q-mb-xs">
+      <div class="q-gutter-sm row items-center">
+        <q-btn-toggle
+          title="Modo de presentación (Tabla o Rejilla)"
+          v-model="isTableGrid"
+          size="sm"
+          push
+          toggle-color="primary"
+          :options="[
+            { value: false, slot: 'tableview' },
+            { value: true, slot: 'gridview' },
+          ]"
+        >
+          <template v-slot:tableview>
+            <q-icon name="r_table_chart" />
+          </template>
 
-        <template v-slot:gridview>
-          <q-icon name="r_grid_view" />
-        </template>
-      </q-btn-toggle>
+          <template v-slot:gridview>
+            <q-icon name="r_grid_view" />
+          </template>
+        </q-btn-toggle>
 
-      <q-btn-toggle
-        title="Densidad las filas en vista de tabla (Normal o Denso)"
-        v-model="isTableDense"
-        size="sm"
-        rounded
-        push
-        class="q-mx-sm"
-        toggle-color="primary"
-        :options="[
-          { value: false, slot: 'normal' },
-          { value: true, slot: 'dense' },
-        ]"
-      >
-        <template v-slot:normal>
-          <q-icon name="r_table_rows" />
-        </template>
+        <q-btn-toggle
+          title="Densidad las filas en vista de tabla (Normal o Denso)"
+          v-model="isTableDense"
+          size="sm"
+          push
+          class="q-mx-sm"
+          toggle-color="primary"
+          :options="[
+            { value: false, slot: 'normal' },
+            { value: true, slot: 'dense' },
+          ]"
+        >
+          <template v-slot:normal>
+            <q-icon name="r_table_rows" />
+          </template>
 
-        <template v-slot:dense>
-          <q-icon name="view_headline" />
-        </template>
-      </q-btn-toggle>
+          <template v-slot:dense>
+            <q-icon name="view_headline" />
+          </template>
+        </q-btn-toggle>
 
-      <!--! TODO: Permitir entrar y salir de pantalla completa
+        <!--! TODO: Permitir entrar y salir de pantalla completa
       <q-toggle disable size="lg" icon="r_fullscreen" v-model="isTableFullscreen" />
       -->
-      
 
-
-      <q-btn icon="add" push rounded color="primary" label="Nuevo artefacto" @click="showForm = true" />
-    <q-input
-        borderless
-        bottom-slots
-        v-model="filter"
-        label="Filtrar"
-        placeholder="Escriba para comenzar a filtrar.."
-        :dense="isTableDense"
-      >
-        <template v-slot:prepend>
-          <q-icon name="r_search" />
-        </template>
-        <template v-slot:append>
-          <q-icon
-            v-show="filter"
-            name="r_close"
-            @click="filter = ''"
-            class="cursor-pointer"
-          />
-        </template>
-      </q-input></div>
+        <q-btn
+          icon="add"
+          push
+          color="primary"
+          label="Nuevo artefacto"
+          @click="showForm = true"
+        />
+        <q-input
+          borderless
+          bottom-slots
+          v-model="filter"
+          label="Filtrar"
+          placeholder="Escriba para comenzar a filtrar.."
+          :dense="isTableDense"
+        >
+          <template v-slot:prepend>
+            <q-icon name="r_search" />
+          </template>
+          <template v-slot:append>
+            <q-icon
+              v-show="filter"
+              name="r_close"
+              @click="filter = ''"
+              class="cursor-pointer"
+            />
+          </template>
+        </q-input>
       </div>
+    </div>
 
     <div class="q-pa-0">
       <!--VIRTUAL SCROLL 
@@ -108,10 +110,10 @@ const $q = useQuasar();
 
 import ArtefactoForm from 'components/ArtefactoForm';
 
-const showForm = ref(false)
+const showForm = ref(false);
 const filter = ref('');
 
-const isTableGrid = ref(false);
+const isTableGrid = ref($q.screen.lt.sm);
 function toggleTableGrid() {
   return (isTableGrid.value = !isTableGrid.value);
 }
