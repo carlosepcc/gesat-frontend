@@ -1,11 +1,12 @@
 <template>
   <q-page padding>
-    Reportes de notificación
+    <ListPage title="Reportes de Notificación" :rows="rnotificacion" :columns="rnotificacionFields"></ListPage>
   </q-page>
 </template>
 
-<script>
-export default {
-  // name: 'PageName',
-}
+<script setup>
+import { ref } from "vue";
+import ListPage from 'components/ListPage'
+const rnotificacion = ref([])
+const rnotificacionFields = ref([])
 </script>

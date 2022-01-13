@@ -1,11 +1,13 @@
 <template>
   <q-page padding>
-    Minutas de reunión
+    <ListPage title="Minutas de reunión" :rows="minutas" :columns="minutaFields"></ListPage>
   </q-page>
 </template>
 
-<script>
-export default {
-  // name: 'PageName',
-}
+<script setup>
+import { ref } from "vue";
+import ListPage from 'components/ListPage'
+
+const minutas = ref([])
+const minutaFields = ref([])
 </script>

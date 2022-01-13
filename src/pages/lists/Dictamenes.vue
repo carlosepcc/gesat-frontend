@@ -1,11 +1,13 @@
 <template>
   <q-page padding>
-    Dictámenes
+    <ListPage title="Dictámenes técnicos" :rows="dictamenes" :columns="dictamenFields" />
   </q-page>
 </template>
 
-<script>
-export default {
-  // name: 'PageName',
-}
+<script setup>
+import { ref } from "vue";
+import ListPage from 'components/ListPage'
+
+const dictamenes = ref([])
+const dictamenFields = ref([])
 </script>
