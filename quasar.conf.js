@@ -102,6 +102,12 @@ module.exports = configure(function (ctx) {
 
           xedro: '#c64ab9',
         },
+
+        notify: {
+          type:'positive',
+          message: 'Acción completada con éxito',
+        position: "top"
+        }
       },
 
       // iconSet: 'material-icons', // Quasar icon set
@@ -115,7 +121,10 @@ module.exports = configure(function (ctx) {
       // directives: [],
 
       // Quasar plugins
-      plugins: [],
+      plugins: [
+        'Notify',
+        'Dialog'
+      ],
     },
 
     // animations: 'all', // --- includes all animations

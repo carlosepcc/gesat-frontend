@@ -17,7 +17,7 @@
           <!-- TODO: Componente generico  -->
 
           <q-input
-            filled
+            
             v-model="artefactoName"
             label="Nombre del artefacto"
             lazy-rules
@@ -40,19 +40,21 @@
           <q-select
             v-model="fase"
             default
+            filled
             :options="[
               { label: '1', value: 1 },
               { label: '2', value: 2 },
               { label: '3', value: 3 },
             ]"
             label="Fase"
-            filled
+            
             lazy-rules
             :rules="[val || 'Por favor, seleccione algo']"
           />
 
           <q-select
             v-model="disciplina"
+            filled
             :options="[
               { label: '1', value: 1 },
               { label: '2', value: 2 },
@@ -60,7 +62,6 @@
               { label: '4', value: 4 },
             ]"
             label="Disciplina"
-            filled
             lazy-rules
             :rules="[val || 'Por favor, seleccione algo']"
           />
@@ -97,27 +98,16 @@
   </q-dialog>
 </template>
 <script setup>
-import { useQuasar } from 'quasar';
-import { ref } from 'vue';
+import { useQuasar} from 'quasar';
+import { ref,defineProps,defineEmits } from 'vue';
 const $q = useQuasar();
 
 const props = defineProps({
-  title: {
-    type: String,
-  },
-  url: {
-    type: String,
-    default: '',
-  } /* 
-  fields: {
-    artefactoName: {
-      name: 'artefactoname',
-      fieldtype: 'input',
-      type: 'text',
-      label: 'Nombre del artefacto',
-    },
-  }, */,
+  title: String,
+  url: String, 
 });
+const emits = defineEmits(['closeForm'])
+
 
 const nuevoArtefacto = ref(null);
 
@@ -128,17 +118,16 @@ const disciplina = ref(1);
 const attachments = ref(null);
 
 function onSubmit() {
+  $q.notify('Creado con exito')
+  onReset()
   return true;
 }
-
 function onReset() {
 artefactoName.value = null;
 description.value = null;
-fase = ref(1);
-disciplina = ref(1);
-attachments = ref(null);
-  
-  
-  
+fase.value = 1;
+disciplina.value = 1;
+attachments.value = null;  
+  $q.notify('Reestablecidos todos los campos')
 }
 </script>

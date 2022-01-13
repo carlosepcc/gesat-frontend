@@ -1,7 +1,7 @@
 <template>
   <q-page padding>
     <ArtefactoForm v-model="showForm" />
-   <ListPage @open-form="showForm = true" title="Artefactos" rowKey="name" :rows="artefactos" :columns="artefactoFields" />
+   <ListPage @open-form="showForm = true" title="Artefactos" rowKey="id" :rows="artefactos" :columns="artefactoFields" />
   </q-page>
 </template>
 
@@ -35,45 +35,45 @@ artefactoFields.value =[{
 ];
 
 artefactos.value = [
-  {
+  {id:1,
     name: 'Artefacto.001',
     description: 'Descripcion del artefacto lorem ipsum dolor sit amet',
     fase: 1,
     disciplina: 'disciplina1',
     adjunto: 'adjunto.odp',
   },
-  {
+  {id:2,
     name: 'Artefacto.002',
     description: 'Descripcion del artefacto lorem ipsum dolor sit amet',
     fase: 1,
     disciplina: 'disciplina1',
     adjunto: 'adjunto.odp',
   },
-  {
+  {id:3,
     name: 'Artefacto.003',
     description: 'Descripcion del artefacto lorem ipsum dolor sit amet',
-    fase: 1,
+    fase: 2,
     disciplina: 'disciplina1',
     adjunto: 'adjunto.odp',
   },
-  {
+  {id:4,
     name: 'Artefacto.004',
     description: 'Descripcion del artefacto lorem ipsum dolor sit amet',
-    fase: 1,
+    fase: 3,
     disciplina: 'disciplina1',
     adjunto: 'adjunto.odp',
   },
-  {
+  {id:5,
     name: 'Artefacto.005',
     description: 'Descripcion del artefacto lorem ipsum dolor sit amet',
     fase: 1,
     disciplina: 'disciplina1',
     adjunto: 'adjunto.odp',
   },
-  {
+  {id:6,
     name: 'Registro.006',
     description: 'Descripcion del artefacto lorem ipsum dolor sit amet',
-    fase: 1,
+    fase: 2,
     disciplina: 'disciplina1',
     adjunto: 'adjunto.doc',
   },]

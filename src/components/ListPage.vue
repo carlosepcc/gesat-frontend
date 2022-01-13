@@ -1,12 +1,6 @@
 <template>
   <q-page class="q-pt-md">
     <div class="q-pa-0">
-      <!--VIRTUAL SCROLL 
-        :pagination="{ rowsPerPage: 0 }"
-        :rows-per-page-options="[0]"
-        style="max-height: 800px;"
-        virtual-scroll
-      -->
       <q-table
         :title="title"
         :rows="rows"
@@ -27,6 +21,7 @@
         <!-- TODO :loading="loading" -->
         <template v-slot:top>
           <div class="q-gutter-sm row items-center">
+            <!-- TABLE / GRID -->
             <q-btn-toggle
               title="Modo de presentación (Tabla o Rejilla)"
               v-model="isTableGrid"
@@ -47,6 +42,7 @@
               </template>
             </q-btn-toggle>
 
+            <!-- DENSE / NORMAL -->
             <q-btn-toggle
               title="Densidad las filas en vista de tabla (Normal o Denso)"
               v-model="isTableDense"
@@ -68,16 +64,25 @@
               </template>
             </q-btn-toggle>
 
-            <!--! TODO: Permitir entrar y salir de pantalla completa
-            -->
-            <q-toggle size="lg" icon="r_fullscreen" v-model="isTableFullscreen" title="Pantalla completa"/>
+            <!-- FULLSCREEN -->
+            <q-toggle
+              size="lg"
+              icon="r_fullscreen"
+              v-model="isTableFullscreen"
+              title="Pantalla completa"
+            />
 
+            <!-- NUEVA ENTRADA -->
+            <q-btn icon="add" label="Nueva entrada"
+            push no-caps @click="$emit('openForm')"/>
+
+            <!-- FILTER -->
             <q-input
               borderless
               bottom-slots
               v-model="filter"
               label="Filtrar"
-              placeholder="Escriba para comenzar a filtrar.."
+              placeholder="Escriba para filtrar.."
               :dense="isTableDense"
             >
               <template v-slot:prepend>
@@ -87,7 +92,18 @@
                 <q-icon v-show="filter" name="r_close" @click="filter = ''" class="cursor-pointer" />
               </template>
             </q-input>
+
           </div>
+        </template>
+
+        <!-- BODY SLOT -->
+        <template v-slot:body="props">
+          <q-tr :props="props">
+            <q-td auto-width>
+              <q-btn color="accent"  @click="$emit('openForm')" icon="edit" />
+            </q-td>
+            <q-td v-for="col in props.cols" :key="col.name" :props="props">{{ col.value }}</q-td>
+          </q-tr>
         </template>
       </q-table>
     </div>

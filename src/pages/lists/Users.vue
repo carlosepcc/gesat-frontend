@@ -20,6 +20,13 @@ userFields.value = [
     field: 'id',
     sortable: true,
   },{
+    name: 'rol',
+    required: true,
+    label: 'Rol',
+    align: 'center',
+    field: 'rol',
+    sortable: true,
+  },{
     name: 'email',
     required: true,
     label: 'email',
@@ -46,12 +53,13 @@ userFields.value = [
     label: 'Foto',
     align: 'left',
     field: 'avatar',
-    sortable: true,
+    sortable: false,
   },
 ]
 users.value = [
 {
 "id": 7,
+"rol":"Asesor de calidad",
 "email": "michael.lawson@reqres.in",
 "first_name": "Michael",
 "last_name": "Lawson",
@@ -59,6 +67,7 @@ users.value = [
 },
 {
 "id": 8,
+"rol":"Revisor",
 "email": "lindsay.ferguson@reqres.in",
 "first_name": "Lindsay",
 "last_name": "Ferguson",
@@ -66,6 +75,7 @@ users.value = [
 },
 {
 "id": 9,
+"rol":"Coordinador de calidad",
 "email": "tobias.funke@reqres.in",
 "first_name": "Tobias",
 "last_name": "Funke",
@@ -73,6 +83,7 @@ users.value = [
 },
 {
 "id": 10,
+"rol":"Encargado de proyecto",
 "email": "byron.fields@reqres.in",
 "first_name": "Byron",
 "last_name": "Fields",
@@ -80,6 +91,7 @@ users.value = [
 },
 {
 "id": 11,
+"rol":"Encargado de proyecto",
 "email": "george.edwards@reqres.in",
 "first_name": "George",
 "last_name": "Edwards",
@@ -87,6 +99,7 @@ users.value = [
 },
 {
 "id": 12,
+"rol":"Revisor",
 "email": "rachel.howell@reqres.in",
 "first_name": "Rachel",
 "last_name": "Howell",
