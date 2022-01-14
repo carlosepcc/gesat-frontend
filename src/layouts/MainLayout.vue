@@ -85,7 +85,7 @@ import DrawerItem from 'components/DrawerItem';
 
 const user = ref({
   name: 'Alan Mathison Turing',
-  rol: 'Administrador',
+  rol: 'Rol',
   img: 'https://www.ecured.cu/images/c/c6/Alan_Turing_II.jpg',
 });
 

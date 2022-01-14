@@ -1,5 +1,6 @@
 <template>
   <q-page padding>
+    <q-btn label=Eliminar @click="removeRow(7,users)" />
     <ListPage :title="Usuarios" :rows="users" :columns="userFields"></ListPage>
   </q-page>
 </template>
@@ -7,6 +8,10 @@
 <script setup>
 import { ref } from "vue";
 import ListPage from 'components/ListPage'
+
+
+
+
 
 const users = ref([])
 const userFields = ref([])
@@ -106,5 +111,13 @@ users.value = [
 "avatar": "https://reqres.in/img/faces/12-image.jpg"
 }
 ]
-
+function removeRow(id, rows) {
+console.log('function remove triggered')
+  var index = rows.findIndex(function(currentValue){
+     return currentValue.id === id;
+})
+   rows.splice(index,1)
+   
+console.log('spliced')
+}
 </script>

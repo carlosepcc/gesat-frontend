@@ -73,8 +73,7 @@
             />
 
             <!-- NUEVA ENTRADA -->
-            <q-btn icon="add" label="Nueva entrada"
-            push no-caps @click="$emit('openForm')"/>
+            <q-btn icon="add" label="Nueva entrada" push no-caps @click="$emit('openForm')" />
 
             <!-- FILTER -->
             <q-input
@@ -92,18 +91,7 @@
                 <q-icon v-show="filter" name="r_close" @click="filter = ''" class="cursor-pointer" />
               </template>
             </q-input>
-
           </div>
-        </template>
-
-        <!-- BODY SLOT -->
-        <template v-slot:body="props">
-          <q-tr :props="props">
-            <q-td auto-width>
-              <q-btn color="accent"  @click="$emit('openForm')" icon="edit" />
-            </q-td>
-            <q-td v-for="col in props.cols" :key="col.name" :props="props">{{ col.value }}</q-td>
-          </q-tr>
         </template>
       </q-table>
     </div>
@@ -131,6 +119,7 @@ const selected = ref([]);
 const isTableGrid = ref($q.screen.lt.sm);
 const isTableFullscreen = ref(false);
 const isTableDense = ref($q.screen.lt.sm);
+
 
 
 </script>

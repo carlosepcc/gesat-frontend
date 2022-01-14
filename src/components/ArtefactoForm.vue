@@ -1,7 +1,7 @@
 <template>
   <q-dialog position="top">
     <q-card class="">
-      <q-card-section class="text-h7 text-uppercase text-weight-light"> Nuevo Artefacto </q-card-section>
+      <q-card-section class="text-h7 text-uppercase text-weight-light"> {{formtitle}} </q-card-section>
       <q-separator />
       <q-card-section>
         <q-form @submit="onSubmit" @reset="onReset">
@@ -17,7 +17,7 @@
           <!-- TODO: Componente generico  -->
 
           <q-input
-            
+            filled
             v-model="artefactoName"
             label="Nombre del artefacto"
             lazy-rules
@@ -84,13 +84,13 @@
 
           <div class="q-gutter-sm">
             <q-btn
-              label="Limpiar campos"
+              :label="actions[1]"
               type="reset"
               color="primary"
               flat
               class="q-ml-sm"
             />
-            <q-btn push icon="r_add" label="Crear" type="submit" color="primary" />
+            <q-btn push icon="r_save" :label="actions[0]" type="submit" color="primary" />
           </div>
         </q-form>
       </q-card-section>
@@ -99,12 +99,13 @@
 </template>
 <script setup>
 import { useQuasar} from 'quasar';
-import { ref,defineProps,defineEmits } from 'vue';
+import { ref, defineProps, defineEmits } from 'vue';
 const $q = useQuasar();
 
 const props = defineProps({
-  title: String,
+  formtitle: String,
   url: String, 
+  actions: Array,
 });
 const emits = defineEmits(['closeForm'])
 

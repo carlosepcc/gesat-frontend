@@ -1,6 +1,6 @@
 <template>
   <q-page padding>
-    <ArtefactoForm v-model="showForm" />
+    <ArtefactoForm formtitle="Artefacto" :actions="['Guardar','Limpiar campos']" v-model="showForm" />
    <ListPage @open-form="showForm = true" title="Artefactos" rowKey="id" :rows="artefactos" :columns="artefactoFields" />
   </q-page>
 </template>
