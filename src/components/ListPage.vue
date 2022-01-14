@@ -70,11 +70,18 @@
               v-model="isTableFullscreen"
               title="Pantalla completa"
             />
-            
-<!-- ELIMINAR -->
-<q-btn icon="delete" label="Eliminar selección" no-caps text-color="negative" push @click="$emit('deleteRows',selected)" />
-        
-         <!-- NUEVA ENTRADA -->
+
+            <!-- ELIMINAR -->
+            <q-btn
+              icon="delete"
+              label="Eliminar selección"
+              no-caps
+              text-color="negative"
+              push
+              @click="$emit('deleteRows', selected)"
+            />
+
+            <!-- NUEVA ENTRADA -->
             <q-btn icon="add" label="Nueva entrada" push no-caps @click="$emit('openForm')" />
 
             <!-- FILTER -->
@@ -93,27 +100,28 @@
                 <q-icon v-show="filter" name="r_close" @click="filter = ''" class="cursor-pointer" />
               </template>
             </q-input>
+          </div>
 
-         </div>
-
-         <!-- BODY SLOT -->
+          <!-- BODY SLOT -->
         </template>
         <template v-slot:body="props">
-        <q-tr :props="props">
-          <q-td auto-width>
-            <q-checkbox :dense="isTableDense" v-model="props.selected" />
-            <q-btn size="sm" text-color="accent" flat round :dense="isTableDense" @click="$emit('openForm',props.row)" icon="edit" />
-            <!-- <q-btn size="sm" text-color="negative" flat round :dense="isTableDense" @click="$emit('deleteRow',props.row)" icon="delete" /> -->
-          </q-td>
-          <q-td
-            v-for="col in props.cols"
-            :key="col.name"
-            :props="props"
-          >
-            {{ col.value }}
-          </q-td>
-        </q-tr>
-      </template>
+          <q-tr :props="props">
+            <q-td auto-width>
+              <q-checkbox :dense="isTableDense" v-model="props.selected" />
+              <q-btn
+                size="sm"
+                text-color="accent"
+                flat
+                round
+                :dense="isTableDense"
+                @click="$emit('openForm', props.row)"
+                icon="edit"
+              />
+              <q-btn size="sm" text-color="negative" flat round :dense="isTableDense" @click="$emit('deleteRows',[props.row])" icon="delete" />
+            </q-td>
+            <q-td v-for="col in props.cols" :key="col.name" :props="props">{{ col.value }}</q-td>
+          </q-tr>
+        </template>
       </q-table>
     </div>
   </q-page>
@@ -133,7 +141,7 @@ const props = defineProps({
     default: 'id'
   }
 })
-const emit = defineEmits(['openForm','deleteRows'])
+const emit = defineEmits(['openForm', 'deleteRows'])
 
 const filter = ref('');
 const selected = ref([]);
@@ -141,27 +149,5 @@ const isTableGrid = ref($q.screen.lt.sm);
 const isTableFullscreen = ref(false);
 const isTableDense = ref($q.screen.lt.sm);
 
-/* function deleteSelected(){
-      selected.value.filter(function(item){
-        rows.splice(rows.indexOf(item), 1);
-        return item;
-      });
-      selected.value = [];
-    } */
-
-function removeRow(ids = [], rows = []) {
-console.log(`function remove triggered ids:`)
-  var index = rows.findIndex(function(currentValue){
-     return currentValue.id === id;
-})
-if (index != -1){
-  rows.splice(index,1)
-  console.log('spliced')
-}else{
-
-  console.log('index not found')
-}
-   
-}
 </script>
 
