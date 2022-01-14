@@ -103,7 +103,7 @@
           <q-td auto-width>
             <q-checkbox :dense="isTableDense" v-model="props.selected" />
             <q-btn size="sm" text-color="accent" flat round :dense="isTableDense" @click="$emit('openForm',props.row)" icon="edit" />
-            <q-btn size="sm" text-color="accent" flat round :dense="isTableDense" @click="$emit('deleteRow',props.row)" icon="delete" />
+            <!-- <q-btn size="sm" text-color="negative" flat round :dense="isTableDense" @click="$emit('deleteRow',props.row)" icon="delete" /> -->
           </q-td>
           <q-td
             v-for="col in props.cols"
