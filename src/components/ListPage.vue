@@ -95,8 +95,25 @@
             </q-input>
 
          </div>
+
+         <!-- BODY SLOT -->
         </template>
-    
+        <template v-slot:body="props">
+        <q-tr :props="props">
+          <q-td auto-width>
+            <q-checkbox :dense="isTableDense" v-model="props.selected" />
+            <q-btn size="sm" text-color="accent" flat round :dense="isTableDense" @click="$emit('openForm',props.row)" icon="edit" />
+            <q-btn size="sm" text-color="accent" flat round :dense="isTableDense" @click="$emit('deleteRow',props.row)" icon="delete" />
+          </q-td>
+          <q-td
+            v-for="col in props.cols"
+            :key="col.name"
+            :props="props"
+          >
+            {{ col.value }}
+          </q-td>
+        </q-tr>
+      </template>
       </q-table>
     </div>
   </q-page>

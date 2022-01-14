@@ -106,6 +106,7 @@ const props = defineProps({
   formtitle: String,
   url: String, 
   actions: Array,
+  data: Object
 });
 const emits = defineEmits(['closeForm'])
 
@@ -120,7 +121,7 @@ const attachments = ref(null);
 
 
 function onSubmit() {
-  $q.notify('Creado con exito')
+  $q.notify('Guardado con éxito')
   onReset()
   return true;
 }
