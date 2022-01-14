@@ -1,7 +1,7 @@
 <template>
   <q-page padding>
     <ArtefactoForm formtitle="Artefacto" :actions="['Guardar','Limpiar campos']" v-model="showForm" />
-   <ListPage @open-form="showForm = true" title="Artefactos" rowKey="id" :rows="artefactos" :columns="artefactoFields" />
+   <ListPage @open-form="showForm = true" @delete-rows="deleteTuples" title="Artefactos" rowKey="id" :rows="artefactos" :columns="artefactoFields" />
   </q-page>
 </template>
 
@@ -13,6 +13,7 @@ import ListPage from 'src/components/ListPage.vue';
 const showForm        = ref(false);
 const artefactos      = ref([])
 const artefactoFields = ref([])
+
 
 artefactoFields.value =[{
     name: 'name',
@@ -77,4 +78,12 @@ artefactos.value = [
     disciplina: 'disciplina1',
     adjunto: 'adjunto.doc',
   },]
+
+function deleteTuples(selectedRows = []){
+  console.log(selectedRows);
+      selectedRows.filter(function(item){
+        artefactos.value.splice(artefactos.value.indexOf(item), 1);
+        return item;
+      });
+    }
 </script>
