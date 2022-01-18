@@ -1,7 +1,7 @@
 <template>
   <q-page class="q-pt-md">
     <div class="q-pa-0">
-      <q-table
+     <q-table
         :title="title"
         :rows="rows"
         :columns="columns"
@@ -128,8 +128,12 @@
 </template>
 
 <script setup>
+
 import { useQuasar } from 'quasar';
 import { ref, defineProps, defineEmits } from 'vue';
+
+import global from 'src/services/global'
+const { state, addArtefacto } = global
 const $q = useQuasar();
 
 const props = defineProps({

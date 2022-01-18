@@ -4,6 +4,19 @@
       formtitle="Artefacto"
       :actions="['Guardar', 'Limpiar campos']"
       v-model="showForm"
+      :data="{}"
+    />
+    <q-btn
+      label="addArtefacto"
+      @click="artefactos.push({  
+      id: Math.floor(Math.random() * 10000),
+      name: 'Nuevo Artefacto',
+      description: 'Un artefacto muy importante',
+        fase: 1,
+        disciplina: 2,
+        adjunto: 'documento051.docx',
+      })"
+      icon="add"
     />
     <ListPage
       @open-form="showForm = true"
@@ -19,16 +32,25 @@
 <script setup>
 import { ref } from 'vue';
 import { useQuasar } from 'quasar'
+import global from 'src/services/global'
 import ArtefactoForm from 'components/ArtefactoForm';
 import ListPage from 'src/components/ListPage.vue';
+
 
 const $q = useQuasar();
 const showForm = ref(false);
 const artefactos = ref([])
 const artefactoFields = ref([])
-
+const { state, addArtefacto } = global
 
 artefactoFields.value = [{
+  name: 'id',
+  required: true,
+  label: 'ID',
+  align: 'rigth',
+  field: 'id',
+  sortable: true,
+},{
   name: 'name',
   required: true,
   label: 'Nombre',
@@ -48,66 +70,18 @@ artefactoFields.value = [{
 { name: 'adjunto', label: 'Adjunto', field: 'adjunto' },
 ];
 
-artefactos.value = [
-  {
-    id: 1,
-    name: 'Artefacto.001',
-    description: 'Descripcion del artefacto lorem ipsum dolor sit amet',
-    fase: 1,
-    disciplina: 'disciplina1',
-    adjunto: 'adjunto.odp',
-  },
-  {
-    id: 2,
-    name: 'Artefacto.002',
-    description: 'Descripcion del artefacto lorem ipsum dolor sit amet',
-    fase: 1,
-    disciplina: 'disciplina1',
-    adjunto: 'adjunto.odp',
-  },
-  {
-    id: 3,
-    name: 'Artefacto.003',
-    description: 'Descripcion del artefacto lorem ipsum dolor sit amet',
-    fase: 2,
-    disciplina: 'disciplina1',
-    adjunto: 'adjunto.odp',
-  },
-  {
-    id: 4,
-    name: 'Artefacto.004',
-    description: 'Descripcion del artefacto lorem ipsum dolor sit amet',
-    fase: 3,
-    disciplina: 'disciplina1',
-    adjunto: 'adjunto.odp',
-  },
-  {
-    id: 5,
-    name: 'Artefacto.005',
-    description: 'Descripcion del artefacto lorem ipsum dolor sit amet',
-    fase: 1,
-    disciplina: 'disciplina1',
-    adjunto: 'adjunto.odp',
-  },
-  {
-    id: 6,
-    name: 'Registro.006',
-    description: 'Descripcion del artefacto lorem ipsum dolor sit amet',
-    fase: 2,
-    disciplina: 'disciplina1',
-    adjunto: 'adjunto.doc',
-  },]
+artefactos.value = state.value.artefactoArr
 
 function deleteTuples(selectedRows = []) {
-  
+
   $q.dialog({
     title: 'Confirme eliminación',
     message: 'La eliminación será permanente.',
     cancel: true,
     persistent: true,
-    color:'negative',
-    ok:{label:'Eliminar', noCaps:true,flat:true},
-    cancel:{color:'primary', noCaps:true,flat:true}
+    color: 'negative',
+    ok: { label: 'Eliminar', noCaps: true, flat: true },
+    cancel: { color: 'primary', noCaps: true, flat: true }
   }).onOk(() => {
     console.log('>>>> OK')
     selectedRows.filter(function (item) {

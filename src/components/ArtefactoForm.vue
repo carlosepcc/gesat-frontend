@@ -5,17 +5,7 @@
       <q-separator />
       <q-card-section>
         <q-form @submit="onSubmit" @reset="onReset">
-          <!-- <div v-for="field in fields" v-bind:key="field.name">
-        <q-input
-          filled
-          v-model="artefactoName"
-          label="Nombre del artefacto*"
-          lazy-rules
-          :rules="[(val) => (val && val.length > 0) || 'Please type something']"
-        />
-      </div> -->
-          <!-- TODO: Componente generico  -->
-
+      
           <q-input
             filled
             v-model="artefactoName"
@@ -106,12 +96,20 @@ const props = defineProps({
   formtitle: String,
   url: String, 
   actions: Array,
-  data: Object
+  datos: {
+    default: {
+      name:'',
+      description:'',
+      fase:1,
+      disciplina:1,
+      attachments:'',
+    }
+  },
 });
 const emits = defineEmits(['closeForm'])
 
 
-const nuevoArtefacto = ref(null);
+const nuevoArtefacto = ref({});
 
 const artefactoName = ref(null);
 const description = ref(null);
@@ -119,6 +117,7 @@ const fase = ref(1);
 const disciplina = ref(1);
 const attachments = ref(null);
 
+artefactoName.value = formtitle
 
 function onSubmit() {
   $q.notify('Guardado con éxito')
