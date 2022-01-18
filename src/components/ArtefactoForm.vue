@@ -117,7 +117,6 @@ const fase = ref(1);
 const disciplina = ref(1);
 const attachments = ref(null);
 
-artefactoName.value = formtitle
 
 function onSubmit() {
   $q.notify('Guardado con éxito')

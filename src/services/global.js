@@ -2,7 +2,14 @@ import { ref } from 'vue';
 
 // State
 const state = ref({
-  count: 1,
+  user:{
+  username:'alanmt',
+  name: 'Alan Mathison Turing',
+  rol: 'Administrador',
+  img: 'https://www.ecured.cu/images/c/c6/Alan_Turing_II.jpg',
+
+  },
+  dense: false,
   artefactoArr: [],
   userArr:[],
   minutasArr:[],

@@ -152,6 +152,7 @@ const selected = ref([]);
 const isTableGrid = ref($q.screen.lt.sm);
 const isTableFullscreen = ref(false);
 const isTableDense = ref($q.screen.lt.sm);
+isTableDense.value = state.value.dense
 
 </script>
 

@@ -7,7 +7,8 @@
       :data="{}"
     />
     <q-btn
-      label="addArtefacto"
+      label="addArtefacto( )"
+      no-caps
       @click="artefactos.push({  
       id: Math.floor(Math.random() * 10000),
       name: 'Nuevo Artefacto',
@@ -32,16 +33,16 @@
 <script setup>
 import { ref } from 'vue';
 import { useQuasar } from 'quasar'
-import global from 'src/services/global'
 import ArtefactoForm from 'components/ArtefactoForm';
 import ListPage from 'src/components/ListPage.vue';
 
+import global from 'src/services/global'
 
+const { state, addArtefacto } = global
 const $q = useQuasar();
 const showForm = ref(false);
 const artefactos = ref([])
 const artefactoFields = ref([])
-const { state, addArtefacto } = global
 
 artefactoFields.value = [{
   name: 'id',

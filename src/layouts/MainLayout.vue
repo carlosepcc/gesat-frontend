@@ -7,8 +7,12 @@
 
           <q-toolbar-title>
             <div class="row">
-              <span class="brandi i-xedro on-left gt-xs"></span>
-              <div class="column">
+            <div class="column">
+            <q-avatar size=48px>
+      <img src="xedro/xedro-imagotipo-delujo.png">
+    </q-avatar>
+    </div>
+    <div class="column">
                 <div class="brand text-xedro">XEDRO</div>
                 <div class="row-inline items-center">
                   <span class="text-indigo-10 text-bold siglas">GESAT</span>
@@ -23,19 +27,24 @@
         </div>
         <q-item
           class="text-white q-py-none absolute-right"
-          title="AlanMathinsonTuring"
+          :title="user.username + '. ' + user.name + '. ' + user.rol"
         >
           <q-item-section side>
-            <q-item-label class="text-white gt-xs">{{
-              user.name
-            }}</q-item-label>
-            <q-item-label class="text-white" caption>{{
+            <q-item-label class="text-purple-1 text-weight-light">
+            <span class="gt-xs">{{ user.name}}</span>
+            <span class="lt-sm">{{ user.username }}</span>
+            </q-item-label>
+            <q-item-label class="text-purple-2 text-weight-bold" caption>{{
               user.rol
             }}</q-item-label>
           </q-item-section>
           <q-item-section>
-            <q-avatar size="48px">
-              <img :src="user.img" />
+            <q-avatar size="xl" color="white" text-color="primary" class="text-weight-bolder">
+              <img v-if="user.img" :src="user.img" :alt="user.name.charAt(0)" />
+              <span v-else >{{user.name.charAt(0)}}</span>
+              <q-badge :title="user.rol" floating rounded color="primary" class="text-weight-bold text-purple-2" >
+              {{user.rol.charAt(0)}}
+              </q-badge>
             </q-avatar>
           </q-item-section>
         </q-item>
@@ -81,13 +90,10 @@
 <script setup>
 import { ref } from 'vue';
 import DrawerItem from 'components/DrawerItem';
-// calling here; equivalent to when component is created
+import global from 'src/services/global'
 
-const user = ref({
-  name: 'Alan Mathison Turing',
-  rol: 'Rol',
-  img: 'https://www.ecured.cu/images/c/c6/Alan_Turing_II.jpg',
-});
+const { state } = global
+const user = state.value.user
 
 const leftDrawerOpen = ref(false);
 const miniState = ref(false);
