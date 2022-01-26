@@ -7,18 +7,18 @@
 
           <q-toolbar-title>
             <div class="row">
-            <div class="column">
-            <q-avatar size=48px>
-      <img src="xedro/xedro-imagotipo-delujo.png">
-    </q-avatar>
-    </div>
-    <div class="column">
+              <div class="column">
+                <q-avatar size="48px">
+                  <img src="xedro/xedro-imagotipo-delujo.png" />
+                </q-avatar>
+              </div>
+              <div class="column">
                 <div class="brand text-xedro">XEDRO</div>
                 <div class="row-inline items-center">
                   <span class="text-indigo-10 text-bold siglas">GESAT</span>
                   <span class="stands gt-sm generico stands">
-                    Gestión de Actividades<br />
-                    Técnicas
+                    Gestión de Actividades
+                    <br />Técnicas
                   </span>
                 </div>
               </div>
@@ -31,20 +31,26 @@
         >
           <q-item-section side>
             <q-item-label class="text-purple-1 text-weight-light">
-            <span class="gt-xs">{{ user.name}}</span>
-            <span class="lt-sm">{{ user.username }}</span>
+              <span class="gt-xs">{{ user.name }}</span>
+              <span class="lt-sm">{{ user.username }}</span>
             </q-item-label>
-            <q-item-label class="text-purple-2 text-weight-bold" caption>{{
-              user.rol
-            }}</q-item-label>
+            <q-item-label class="text-purple-2 text-weight-bold" caption>
+              {{
+                user.rol
+              }}
+            </q-item-label>
           </q-item-section>
           <q-item-section>
             <q-avatar size="xl" color="white" text-color="primary" class="text-weight-bolder">
               <img v-if="user.img" :src="user.img" :alt="user.name.charAt(0)" />
-              <span v-else >{{user.name.charAt(0)}}</span>
-              <q-badge :title="user.rol" floating rounded color="primary" class="text-weight-bold text-purple-2" >
-              {{user.rol.charAt(0)}}
-              </q-badge>
+              <span v-else>{{ user.name.charAt(0) }}</span>
+              <q-badge
+                :title="user.rol"
+                floating
+                rounded
+                color="primary"
+                class="text-weight-bold text-purple-2"
+              >{{ user.rol.charAt(0) }}</q-badge>
             </q-avatar>
           </q-item-section>
         </q-item>
@@ -77,11 +83,11 @@
     <!-- CONTENEDOR DE PAGINAS -->
     <q-page-container>
       <router-view v-slot="{ Component, route }">
-<transition>
-  <keep-alive>
-    <component :is="Component" :key="route.name" />
-  </keep-alive>
-</transition>
+        <transition>
+          <keep-alive>
+            <component :is="Component" :key="route.name" />
+          </keep-alive>
+        </transition>
       </router-view>
     </q-page-container>
   </q-layout>
@@ -89,11 +95,16 @@
 
 <script setup>
 import { ref } from 'vue';
+import { useQuasar } from 'quasar'
 import DrawerItem from 'components/DrawerItem';
 import global from 'src/services/global'
 
 const { state } = global
-const user = state.value.user
+const s = state.value
+const $q = useQuasar();
+const user = s.user
+s.grid = $q.screen.lt.sm
+s.dense = $q.screen.lt.sm
 
 const leftDrawerOpen = ref(false);
 const miniState = ref(false);
@@ -103,14 +114,14 @@ function toggleLeftDrawer() {
 
 const drawerItems = [
   {
-title: "Inicio",
-icon:"home",
-alt:"n",
-to: "/"
+    title: "Inicio",
+    icon: "home",
+    alt: "n",
+    to: "/"
   },
   {
     title: 'Dictámenes Técnicos',
-    icon:'D',
+    icon: 'D',
     to: 'dictamenes',
     separate: true
   },
@@ -165,14 +176,14 @@ to: "/"
 
 <style scoped>
 @font-face {
-  font-family: 'Electrofied';
-  src: url('https://db.onlinewebfonts.com/t/f45d0d0e10eb5171b1ad9ee95d1314f9.ttf')
-    format('truetype');
+  font-family: "Electrofied";
+  src: url("https://db.onlinewebfonts.com/t/f45d0d0e10eb5171b1ad9ee95d1314f9.ttf")
+    format("truetype");
 }
 @font-face {
-  font-family: 'Aller';
-  src: url('https://db.onlinewebfonts.com/t/3bf7501ddcf8338bc9cdcedad10914cb.ttf')
-    format('truetype');
+  font-family: "Aller";
+  src: url("https://db.onlinewebfonts.com/t/3bf7501ddcf8338bc9cdcedad10914cb.ttf")
+    format("truetype");
 }
 .brand-bar {
   margin-bottom: 2px;

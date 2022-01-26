@@ -1,14 +1,16 @@
 <template>
   <q-dialog position="top">
-    <q-card class="">
+    <q-card >
       <q-card-section class="text-h7 text-uppercase text-weight-light"> {{formtitle}} </q-card-section>
       <q-separator />
       <q-card-section>
-        <q-form @submit="onSubmit" @reset="onReset">
+        <q-form ref="formulario" @submit="onSubmit" @reset="onReset">
       
           <q-input
+          autofocus
+          :dense=s.dense
             filled
-            v-model="artefactoName"
+            v-model="s.currentArtefacto.name"
             label="Nombre del artefacto"
             lazy-rules
             :rules="[
@@ -17,8 +19,9 @@
           />
 
           <q-input
+          :dense=s.dense
             label="Descripción"
-            v-model="description"
+            v-model="s.currentArtefacto.description"
             filled
             autogrow
             lazy-rules
@@ -28,14 +31,11 @@
           />
 
           <q-select
-            v-model="fase"
+          :dense=s.dense
+            v-model="s.currentArtefacto.fase"
             default
             filled
-            :options="[
-              { label: '1', value: 1 },
-              { label: '2', value: 2 },
-              { label: '3', value: 3 },
-            ]"
+            :options="[1,2,3]"
             label="Fase"
             
             lazy-rules
@@ -43,44 +43,43 @@
           />
 
           <q-select
-            v-model="disciplina"
+          :dense=s.dense
+            v-model="s.currentArtefacto.disciplina"
             filled
-            :options="[
-              { label: '1', value: 1 },
-              { label: '2', value: 2 },
-              { label: '3', value: 3 },
-              { label: '4', value: 4 },
-            ]"
+            :options="[1,2,3,4]"
             label="Disciplina"
             lazy-rules
             :rules="[val || 'Por favor, seleccione algo']"
           />
           <q-file
+          :dense=s.dense
             filled
-            v-model="attachments"
+            v-model="s.currentArtefacto.attachments"
             label="Adjuntos"
             counter
             use-chips
             multiple
             append
+            clearable
             accept=".doc,.docx,.odt,.xml,.pdf,.xsl,.xslx,ppt,.pptx,.odp,.ods,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
           >
+          
             <template v-slot:prepend>
               <q-icon name="attach_file" />
             </template>
           </q-file>
-
           <q-separator class="q-mb-sm q-mt-md" />
 
           <div class="q-gutter-sm">
             <q-btn
+            :dense=s.dense
               :label="actions[1]"
               type="reset"
               color="primary"
               flat
               class="q-ml-sm"
             />
-            <q-btn push icon="r_save" :label="actions[0]" type="submit" color="primary" />
+            <q-btn push icon="r_save" :label="actions[0]" type="submit"  color="primary" />
           </div>
         </q-form>
       </q-card-section>
@@ -90,45 +89,39 @@
 <script setup>
 import { useQuasar} from 'quasar';
 import { ref, defineProps, defineEmits } from 'vue';
+import global from 'src/services/global'
+
+const { state } = global
+const s = state.value
 const $q = useQuasar();
 
 const props = defineProps({
   formtitle: String,
   url: String, 
   actions: Array,
-  datos: {
-    default: {
-      name:'',
-      description:'',
-      fase:1,
-      disciplina:1,
-      attachments:'',
-    }
-  },
 });
 const emits = defineEmits(['closeForm'])
 
+const formulario = ref(null)
 
-const nuevoArtefacto = ref({});
-
-const artefactoName = ref(null);
-const description = ref(null);
-const fase = ref(1);
-const disciplina = ref(1);
-const attachments = ref(null);
-
+s.currentArtefacto.name = `Artefacto ${s.artefactoArr.length+1}`
 
 function onSubmit() {
+  s.artefactoArr.push(s.currentArtefacto)
   $q.notify('Guardado con éxito')
   onReset()
   return true;
 }
 function onReset() {
-artefactoName.value = null;
-description.value = null;
-fase.value = 1;
-disciplina.value = 1;
-attachments.value = null;  
-  $q.notify('Reestablecidos todos los campos')
+  s.currentArtefacto = {
+  name:`Artefacto ${s.artefactoArr.length+1}`,
+  fase:1,
+  disciplina:1,
+  description:'',
+  attachments:[],}
+// eslint-disable-next-line
+formulario.value.resetValidation();
+return true
+  /* $q.notify('Reestablecidos todos los campos'); */
 }
 </script>

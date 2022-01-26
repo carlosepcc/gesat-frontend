@@ -10,6 +10,7 @@ const state = ref({
 
   },
   dense: false,
+  grid:false,
   artefactoArr: [],
   userArr:[],
   minutasArr:[],
@@ -18,11 +19,20 @@ const state = ref({
   hallazgoArr:[],
   dictamenArr: [],
 
+  currentArtefacto:{
+  name:'',
+  description:'',
+  fase:1,
+  disciplina:1,
+  attachments:[],},
+  currentMinutasArr:{},
+  currentArtefacto:{},
+  currentArtefacto:{},
+  currentArtefacto:{},
+  currentArtefacto:{},
+
 });
 
 // Mutations
-function addArtefacto(artefacto) {
-  return state.value.artefactoArr.push(artefacto);
-}
 
-export default { state, addArtefacto };
+export default { state };

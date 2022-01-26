@@ -1,5 +1,6 @@
 <template>
   <q-page class="column items-center justify-evenly">
+    
     <div class="text-grey column items-center">
       <q-icon
         name="r_support_agent"

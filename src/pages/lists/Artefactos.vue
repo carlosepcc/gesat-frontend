@@ -1,23 +1,10 @@
 <template>
-  <q-page padding>
+  <q-page class="q-pb-xl">
     <ArtefactoForm
       formtitle="Artefacto"
       :actions="['Guardar', 'Limpiar campos']"
       v-model="showForm"
       :data="{}"
-    />
-    <q-btn
-      label="addArtefacto( )"
-      no-caps
-      @click="artefactos.push({  
-      id: Math.floor(Math.random() * 10000),
-      name: 'Nuevo Artefacto',
-      description: 'Un artefacto muy importante',
-        fase: 1,
-        disciplina: 2,
-        adjunto: 'documento051.docx',
-      })"
-      icon="add"
     />
     <ListPage
       @open-form="showForm = true"
@@ -27,10 +14,14 @@
       :rows="artefactos"
       :columns="artefactoFields"
     />
+<q-page-sticky  :offset="[18, 18]" class="lt-sm">
+            <q-btn position="bottom-right" fab icon="add" color="accent" @click="showForm = true" />
+          </q-page-sticky>
   </q-page>
 </template>
 
 <script setup>
+import axios from 'axios'
 import { ref } from 'vue';
 import { useQuasar } from 'quasar'
 import ArtefactoForm from 'components/ArtefactoForm';
@@ -38,7 +29,8 @@ import ListPage from 'src/components/ListPage.vue';
 
 import global from 'src/services/global'
 
-const { state, addArtefacto } = global
+const { state } = global
+const s = state.value
 const $q = useQuasar();
 const showForm = ref(false);
 const artefactos = ref([])
@@ -72,6 +64,21 @@ artefactoFields.value = [{
 ];
 
 artefactos.value = state.value.artefactoArr
+
+
+
+/* axios.get('https://mdc-gesat.herokuapp.com/usuario')
+  .then(function (response) {
+    // handle success
+    console.log(response);
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  })
+  .then(function () {
+    // always executed
+  }); */
 
 function deleteTuples(selectedRows = []) {
 
