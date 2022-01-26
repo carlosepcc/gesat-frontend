@@ -7,7 +7,7 @@
 
           <q-toolbar-title>
             <div class="row">
-              <div class="column">
+              <div class="column gt-xs">
                 <q-avatar size="48px">
                   <img src="xedro/xedro-imagotipo-delujo.png" />
                 </q-avatar>
