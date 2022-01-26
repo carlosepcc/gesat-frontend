@@ -1,6 +1,6 @@
 <template>
 
-  <q-table class="q-pb-xl bg-white"
+  <q-table class="q-pb-xl bg-white overflow-hidden"
     :flat="!isTableGrid"
     :title="title"
     :rows="rows"
@@ -26,7 +26,7 @@
           title="Modo de presentación (Tabla o Rejilla)"
           v-model="isTableGrid"
           size="sm"
-          unelevated
+          flat
           toggle-color="primary"
           :options="[
             { value: false, slot: 'tableview' },
@@ -47,7 +47,7 @@
           title="Densidad las filas en vista de tabla (Normal o Denso)"
           v-model="isTableDense"
           size="sm"
-          unelevated
+          flat
           class="q-mx-sm"
           toggle-color="primary"
           :options="[
