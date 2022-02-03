@@ -14,9 +14,6 @@
       :rows="artefactos"
       :columns="artefactoFields"
     />
-<q-page-sticky  :offset="[18, 18]" class="lt-sm">
-            <q-btn position="bottom-right" fab icon="add" color="accent" @click="showForm = true" />
-          </q-page-sticky>
   </q-page>
 </template>
 

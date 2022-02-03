@@ -1,12 +1,16 @@
 <template>
   <q-page padding>
+    <q-btn @click="listarUsuarios" label="listarUsuarios" push/>
+  
     <ListPage title="Usuarios" :rows="users" :columns="userFields"></ListPage>
+  
   </q-page>
 </template>
 
 <script setup>
 import { ref } from "vue";
 import ListPage from 'components/ListPage'
+import axios from 'axios'
 import global from 'src/services/global'
 
 const { state, addArtefacto } = global
@@ -20,6 +24,13 @@ userFields.value = [
     label: 'ID',
     align: 'left',
     field: 'id',
+    sortable: true,
+  },{
+    name: 'username',
+    required: true,
+    label: 'Nombre de usuario',
+    align: 'left',
+    field: 'username',
     sortable: true,
   },{
     name: 'rol',
@@ -122,4 +133,21 @@ if (index != -1){
 }
     
 }*/
+
+function listarUsuarios() {
+axios.get('https://mdc-gesat.herokuapp.com/usuario')
+  .then(function (response) {
+    // handle success
+    users.value = response.data
+    console.log(response);
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  })
+  .then(function () {
+    // always executed
+  });
+}
+listarUsuarios()
 </script>
