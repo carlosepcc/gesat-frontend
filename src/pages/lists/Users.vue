@@ -1,22 +1,19 @@
 <template>
   <q-page padding>
-    <q-btn @click="listarUsuarios" label="listarUsuarios" push/>
-
-    <q-btn @click="listar(users,'/usuario')" label="listar" push/>
-  
-    <ListPage title="Usuarios" :rows="users" :columns="userFields"></ListPage>
+    <q-btn @click="listarUsuarios" label="Refrescar lista" flat size="sm" no-caps/>
+    <ListPage title="Usuarios" :rows="usersArr" :columns="userFields"></ListPage>
   
   </q-page>
 </template>
 
 <script setup>
-import { ref } from "vue";
 import ListPage from 'components/ListPage'
-import { api } from 'boot/axios'
-import {useQuasar} from 'quasar'
-const $q = useQuasar()
+import { ref,provide } from "vue";
+import { listar } from 'src/services/api'
 
-const users = ref([])
+const url = '/usuario'
+
+const usersArr = ref([])
 const userFields = ref([])
 
 userFields.value = [
@@ -38,48 +35,9 @@ if (index != -1){
 }
     
 }*/
-function listar(list = users, url = '/usuario') {
-api.get(url)
-  .then(function (response) {
-    // handle success
-    list.value = response.data
-    console.log(list.value);
-  })
-  .catch(function (error) {
-    // handle error
-    console.log(error);
-    $q.notify({
-          color: 'negative',
-          position: 'top',
-          message: `Carga fallida. ${error.message}. Revise su conexión a internet`,
-          icon: 'report_problem'
-        })
-  })
-  .then(function () {
-    // always executed
-  });
-}
-//listar(users, '/usuario')
 
-function listarUsuarios() {
-api.get('/usuario')
-  .then(function (response) {
-    // handle success
-    users.value = response.data
-    console.log(users);
-  })
-  .catch(function (error) {
-    // handle error
-    console.log(error);
-    $q.notify({
-          color: 'negative',
-          position: 'top',
-          message: `Carga fallida. ${error.message}. Revise su conexión a internet`,
-          icon: 'report_problem'
-        })
-  })
-  .then(function () {
-    // always executed
-  });
-}
+const listarUsuarios = () => listar(usersArr,url)
+provide('listarUsuarios',listarUsuarios)
+// execute on component load
+listarUsuarios()
 </script>
