@@ -1,6 +1,8 @@
 <template>
   <q-page padding>
     <q-btn @click="listarUsuarios" label="listarUsuarios" push/>
+
+    <q-btn @click="listar(users,'/usuario')" label="listar" push/>
   
     <ListPage title="Usuarios" :rows="users" :columns="userFields"></ListPage>
   
@@ -18,21 +20,8 @@ const users = ref([])
 const userFields = ref([])
 
 userFields.value = [
-  {
-    name: 'username',
-    required: true,
-    label: 'Nombre de usuario',
-    align: 'left',
-    field: 'username',
-    sortable: true,
-  },{
-    name: 'roles',
-    required: true,
-    label: 'Roles',
-    align: 'center',
-    field: 'roles',
-    sortable: true,
-  }
+  { name: 'username',    required: true,    label: 'Nombre de usuario',    align: 'left',    field: 'username',    sortable: true,},
+  { name: 'roles',    required: true,    label: 'Roles',    align: 'center',    field: 'roles',    sortable: true,}
 ]
 /* 
 function removeRow(id = 1, rows) {
@@ -49,6 +38,28 @@ if (index != -1){
 }
     
 }*/
+function listar(list = users, url = '/usuario') {
+api.get(url)
+  .then(function (response) {
+    // handle success
+    list.value = response.data
+    console.log(list.value);
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+    $q.notify({
+          color: 'negative',
+          position: 'top',
+          message: `Carga fallida. ${error.message}. Revise su conexión a internet`,
+          icon: 'report_problem'
+        })
+  })
+  .then(function () {
+    // always executed
+  });
+}
+//listar(users, '/usuario')
 
 function listarUsuarios() {
 api.get('/usuario')
@@ -63,7 +74,7 @@ api.get('/usuario')
     $q.notify({
           color: 'negative',
           position: 'top',
-          message: `${error.message}. Carga fallida. Revise su conexión a internet`,
+          message: `Carga fallida. ${error.message}. Revise su conexión a internet`,
           icon: 'report_problem'
         })
   })
@@ -71,5 +82,4 @@ api.get('/usuario')
     // always executed
   });
 }
-listarUsuarios()
 </script>
