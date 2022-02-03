@@ -3,10 +3,10 @@
 GESAT App frontend
 
 ### Code 
-- github.com/carlosepcc/gesat-frontend
+- https://github.com/carlosepcc/gesat-frontend
   
 ### Alpha deployment 
-- gesat.surge.sh
+- https://gesat.surge.sh
 
 ---
 ## DEVELOPMENT
