@@ -1,6 +1,6 @@
 <template>
-
-  <q-table class="q-pb-xl bg-white overflow-hidden"
+  <q-table
+    class="q-pb-xl bg-white overflow-hidden"
     :flat="!isTableGrid"
     :title="title"
     :rows="rows"
@@ -19,7 +19,7 @@
     :pagination="{ rowsPerPage: 0 }"
   >
     <!-- TODO :loading="loading" -->
-    <template v-slot:top >
+    <template v-slot:top>
       <div class="q-gutter-sm row items-center">
         <!-- TABLE / GRID -->
         <q-btn-toggle
@@ -64,11 +64,11 @@
           </template>
         </q-btn-toggle>
 
-        <q-space/>
+        <q-space />
 
-<!-- NUEVA ENTRADA -->
-<q-btn
-        v-show="isTableFullscreen || $q.screen.gt.xs"
+        <!-- NUEVA ENTRADA -->
+        <q-btn
+          v-show="isTableFullscreen || $q.screen.gt.xs"
           icon="add"
           :dense="s.dense"
           label="Nuevo"
@@ -79,7 +79,6 @@
 
         <!-- FULLSCREEN -->
         <q-toggle
-        
           :dense="s.dense"
           size="lg"
           icon="r_fullscreen"
@@ -146,6 +145,10 @@
       </q-tr>
     </template>
   </q-table>
+
+  <q-page-sticky :offset="[18, 18]" class="lt-sm">
+    <q-btn position="bottom-right" fab icon="add" title="Nueva entrada" color="accent" @click="$emit('openForm')" />
+  </q-page-sticky>
 </template>
 
 <script setup>
