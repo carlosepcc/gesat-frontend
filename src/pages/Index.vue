@@ -1,6 +1,5 @@
 <template>
   <q-page class="column items-center justify-evenly">
-    
     <div class="text-grey column items-center">
       <q-icon
         name="r_support_agent"
@@ -12,7 +11,6 @@
 </template>
 
 <script setup>
-import {ref } from 'vue'
 import global from 'src/services/global'
 
 const { state } = global
