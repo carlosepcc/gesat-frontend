@@ -25,7 +25,11 @@
             </div>
           </q-toolbar-title>
         </div>
+
+        <!-- USER -->
         <q-item
+          clickable
+          v-ripple
           class="text-white q-py-none absolute-right"
           :title="user.username + '. ' + user.name + '. ' + user.rol"
         >
@@ -53,7 +57,74 @@
               >{{ user.rol.charAt(0) }}</q-badge>
             </q-avatar>
           </q-item-section>
+          
+          <q-menu>
+        <div class="row no-wrap q-pa-md">
+          <div class="column">
+            <div class="text-h6 q-mb-md">Ajustes</div>
+          <!-- TABLE / GRID -->
+    <q-btn-toggle
+              title="Modo de presentación (Tabla o Rejilla)"
+              v-model="s.grid"
+              flat
+              toggle-color="primary"
+              :options="[
+                {label:'Vista en Tabla', noCaps:true,value: false, slot: 'tableview' },
+                {label:'Vista por Tarjetas', noCaps:true,  value: true, slot: 'gridview' },
+              ]"
+            >
+              <template v-slot:tableview>
+                <q-icon name="r_table_chart" class="on-right" />
+              </template>
+
+              <template v-slot:gridview>
+                <q-icon name="r_grid_view" class="on-right"/>
+              </template>
+            </q-btn-toggle>
+            <br>
+            <!-- DENSE / NORMAL -->
+            <q-btn-toggle
+              title="Densidad las filas en vista de tabla (Normal o Denso)"
+              v-model="s.dense"
+              flat
+              class="q-mx-sm"
+              toggle-color="primary"
+              :options="[
+                {label:'Interfaz normal', noCaps:true, value: false, slot: 'normal' },
+                {label:'Interfaz densa', noCaps:true, value: true, slot: 'dense' },
+              ]"
+            >
+              <template v-slot:normal>
+                <q-icon name="r_table_rows" class="on-right" />
+              </template>
+
+              <template v-slot:dense>
+                <q-icon name="view_headline" class="on-right" />
+              </template>
+            </q-btn-toggle></div>
+
+          <q-separator vertical inset class="q-mx-lg" />
+
+          <div class="column items-center">
+            <q-avatar size="72px">
+              <img :src="user.img">
+            </q-avatar>
+
+            <div class="text-subtitle1 q-mt-md q-mb-xs">{{user.name}}</div>
+
+            <q-btn
+            icon="r_slogout"
+              color="primary"
+              label="Cerrar sesión"
+              flat
+              size="sm"
+              v-close-popup
+            />
+          </div>
+        </div>
+      </q-menu>
         </q-item>
+        
       </q-toolbar>
     </q-header>
 
